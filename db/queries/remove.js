@@ -11,6 +11,20 @@ Pool().query('DELETE FROM flight WHERE flightcod = $1', [parseInt(req.params.fli
   })
 }
 
+// Delete plane by id
+const plane = (req, res) => {
+  const planecod = parseInt(req.params.planecod);
+  pool().query('DELETE FROM plane WHERE planecod = $1', [planecod], (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).send(`Plane ${planecod} deleted successfully.`)
+  })
+}
+
+
+
 module.exports = {
-  flight
+  flight,
+  plane,
 }
